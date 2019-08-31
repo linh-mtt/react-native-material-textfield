@@ -27,6 +27,8 @@ export default class TextField extends PureComponent {
     disableFullscreenUI: true,
     autoCapitalize: 'sentences',
     editable: true,
+    
+    bordered: false,
 
     animationDuration: 225,
 
@@ -55,7 +57,7 @@ export default class TextField extends PureComponent {
     ...TextInput.propTypes,
 
     animationDuration: PropTypes.number,
-
+    bordered: PropTypes.bool,
     fontSize: PropTypes.number,
     titleFontSize: PropTypes.number,
     labelFontSize: PropTypes.number,
@@ -347,6 +349,7 @@ export default class TextField extends PureComponent {
       baseColor,
       textColor,
       errorColor,
+      bordered,
       lineWidth,
       activeLineWidth,
       containerStyle,
@@ -392,9 +395,9 @@ export default class TextField extends PureComponent {
       paddingTop: labelHeight,
       paddingBottom: inputContainerPadding,
 
-      ...(disabled?
-        { overflow: 'hidden' }:
-        { borderBottomColor, borderBottomWidth }),
+      ...(disabled ?
+        { overflow: 'hidden', ...(bordered ? { borderColor: textColor, borderWidth: 0.5 } : {}) }:
+        { ...(bordered ? { borderColor: borderBottomColor, borderWidth: borderBottomWidth } : { borderBottomColor , borderBottomWidth }) }),
 
       ...(props.multiline?
         { height: 'web' === Platform.OS ? 'auto' : labelHeight + inputContainerPadding + height }:
