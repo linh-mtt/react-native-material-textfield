@@ -396,7 +396,7 @@ export default class TextField extends PureComponent {
       paddingBottom: inputContainerPadding,
 
       ...(disabled ?
-        { overflow: 'hidden', ...(bordered ? { borderColor: textColor, borderWidth: 0.5 } : {}) }:
+        { overflow: 'hidden', ...(bordered ? { borderColor: baseColor, borderWidth: 1 } : {}) }:
         { ...(bordered ? { borderColor: borderBottomColor, borderWidth: borderBottomWidth } : { borderBottomColor , borderBottomWidth }) }),
 
       ...(props.multiline?
